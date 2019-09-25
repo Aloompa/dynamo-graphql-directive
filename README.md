@@ -71,7 +71,23 @@ type Query {
 
 ### Query a table
 
-Coming Soon
+**Coming Soon**, but I think it will look like:
+
+```gql
+type Event {
+  id: String
+  name: String
+}
+
+type EventsCollection {
+  items: [Event]
+}
+
+type Query {
+  listEventsByApp(query: String!): EventsCollection
+    @dynamo(table: "events", action: "query", index: "appId-index")
+}
+```
 
 ### One to one relationships
 
