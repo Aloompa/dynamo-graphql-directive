@@ -8,7 +8,7 @@ For an example of this in action, see the [Event App](https://github.com/Aloompa
 
 This is obviously a very new project and is not suitable for production applications yet, so use it with caution and _please_ contribute to the project if you think it could be useful.
 
-### Installation
+## Installation
 
 With NPM:
 
@@ -18,7 +18,7 @@ With Yarn:
 
 `yarn add @aloompa/dynamo-graphql-directive --save`
 
-### Getting Started
+## Getting Started
 
 ```js
 import {ApolloServer} from 'apollo-server';
@@ -40,6 +40,8 @@ server.listen().then(({url}) => {
   console.log(`🚀  Server ready at ${url}`);
 });
 ```
+
+For a full list of what can be passed in to the `createDynamoSchema` function, check out the [AWS docs](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB.html)
 
 ## Example Usage
 
