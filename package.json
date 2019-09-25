@@ -1,0 +1,22 @@
+{
+  "name": "@aloompa/dynamo-graphql-directives",
+  "version": "1.0.0",
+  "description": "``` aws dynamodb create-table \\  --table-name performers \\  --attribute-definitions \\  AttributeName=id,AttributeType=S \\  AttributeName=name,AttributeType=S \\  --key-schema AttributeName=id,KeyType=HASH AttributeName=name,KeyType=RANGE \\  --provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1 \\  --endpoint-url http://localhost:8000",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "example": "./node_modules/.bin/ts-node ./src/examples/eventApp"
+  },
+  "author": "Aloompa",
+  "license": "Unlicense",
+  "dependencies": {
+    "apollo-server": "^2.9.4",
+    "aws-sdk": "^2.535.0",
+    "graphql": "^14.5.7",
+    "uuid": "^3.3.3"
+  },
+  "devDependencies": {
+    "ts-node": "^8.4.1",
+    "typescript": "^3.6.3"
+  }
+}
