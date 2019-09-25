@@ -4,7 +4,7 @@ This project is designed to expose Dynamo to the GraphQL as an ORM as detailed o
 
 The idea is eventually be able to drive the entire backend through the schema without a need for handwriting any resolvers or mutations.
 
-For an example of this in action, see the (Event App)[https://github.com/Aloompa/dynamo-graphql-directive/tree/master/src/examples/eventApp].
+For an example of this in action, see the [Event App](https://github.com/Aloompa/dynamo-graphql-directive/tree/master/src/examples/eventApp/schema.ts).
 
 This is obviously a very new project and is not suitable for production applications yet, so use it with caution and _please_ contribute to the project if you think it could be useful.
 
