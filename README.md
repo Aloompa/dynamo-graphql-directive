@@ -1,8 +1,12 @@
-# @aloompa/dynamo-graphql-directive
+# Dynamo GraphQL Directive
 
 This project is designed to expose Dynamo to the GraphQL as an ORM as detailed on [GraphQL Schema Directives as ORM](https://medium.com/brikl-engineering/graphql-schema-directives-as-orm-ec635fdc942d) by Tobias Meixner.
 
 The idea is eventually be able to drive the entire backend through the schema without a need for handwriting any resolvers or mutations.
+
+For an example of this in action, see the (Event App)[https://github.com/Aloompa/dynamo-graphql-directive/tree/master/src/examples/eventApp].
+
+This is obviously a very new project and is not suitable for production applications yet, so use it with caution and _please_ contribute to the project if you think it could be useful.
 
 ### Installation
 
@@ -179,11 +183,11 @@ type Mutation {
 
 ## Contributing
 
-We encourage you to contribute to React Universal Router by submitting bug reports and pull requests through [Github](http//github.com).
+We encourage you to contribute to Dynamo GraphQL Directive by submitting bug reports and pull requests through [Github](http//github.com).
 
 ## License
 
-React Universal Router is released under The [MIT License](http://www.opensource.org/licenses/MIT) (MIT)
+Dynamo GraphQL Directive is released under The [MIT License](http://www.opensource.org/licenses/MIT) (MIT)
 
 Copyright (c) [2019][aloompa llc]
 
