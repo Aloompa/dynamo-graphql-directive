@@ -6,6 +6,16 @@ The idea is eventually be able to drive the entire backend through the schema wi
 
 For an example of this in action, see the [Event App](https://github.com/Aloompa/dynamo-graphql-directive/tree/master/src/examples/eventApp/schema.ts).
 
+## Why this Library?
+
+At Aloompa, we use DynamoDB for a lot of stuff. Due to the complexity of our authentication layer, we aren't able to migrate to AWS AppSync because they don't allow custom directives, but we also have felt the pain of writing an excess of boilerplate along with the Vogels and Dynogles libraries on top of DynamoDB going unmaintained. We started this library as an experiment to see how far we could get using GraphQL as our ORM on top of raw queries using the AWS SDK.
+
+## Opinionated
+
+There will be some opinions built into this directive, such as the shape of lists and mutation responses. I will endeavor to follow the best practices laid out by Facebook, Apollo and the AWS Amplify team, but if you don't like falling into the pit of success, this library might not be your thing.
+
+## Not Suitable for Production (Yet)
+
 This is obviously a very new project and is not suitable for production applications yet, so use it with caution and _please_ contribute to the project if you think it could be useful.
 
 ## Installation
