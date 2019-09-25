@@ -16,7 +16,7 @@ With Yarn:
 
 ### Getting Started
 
-```
+```js
 import {ApolloServer} from 'apollo-server';
 import {createDynamoSchema} from '@aloompa/dynamo-graphql-directive';
 import {typeDefs} from './schema';
@@ -26,7 +26,7 @@ const server = new ApolloServer({
   resolvers: {},
   schemaDirectives: {
     dynamo: createDynamoSchema({
-        // Your custom AWS Dynamo config goes here
+      // Your custom AWS Dynamo config goes here
       endpoint: 'http://localhost:8000',
     }),
   },
@@ -35,38 +35,37 @@ const server = new ApolloServer({
 server.listen().then(({url}) => {
   console.log(`🚀  Server ready at ${url}`);
 });
-
 ```
 
 ## Example Usage
 
 ### Scan an entire table
 
-```
+```gql
 type Event {
-    id: String
-    name: String
+  id: String
+  name: String
 }
 
 type EventsCollection {
-    items: [Event]
+  items: [Event]
 }
 
 type Query {
-    listEvents: EventsCollection @dynamo(table: "events")
+  listEvents: EventsCollection @dynamo(table: "events")
 }
 ```
 
 ### Get an item
 
-```
+```gql
 type Event {
-    id: String
-    name: String
+  id: String
+  name: String
 }
 
 type Query {
-    getEvent(id: String!): Event @dynamo(table: "events" action: "get")
+  getEvent(id: String!): Event @dynamo(table: "events", action: "get")
 }
 ```
 
@@ -76,25 +75,23 @@ Coming Soon
 
 ### One to one relationships
 
-```
+```gql
 type Place {
-    id: String
-    name: String
+  id: String
+  name: String
 }
 
 type Event {
-    id: String
-    name: String
-    placeId: String
-    place: Place @dynamo(table: "places", action: "get", foreignKey: "placeId")
+  id: String
+  name: String
+  placeId: String
+  place: Place @dynamo(table: "places", action: "get", foreignKey: "placeId")
 }
 
 type Query {
-    getEvent(id: String!): Event @dynamo(table: "events" action: "get")
+  getEvent(id: String!): Event @dynamo(table: "events", action: "get")
 }
 ```
-
-Coming Soon
 
 ### One to many relationships
 
@@ -106,61 +103,61 @@ Coming Soon
 
 ### Create Item Mutations
 
-```
+```gql
 type Event {
-    id: String
-    name: String
+  id: String
+  name: String
 }
 
 type EventMutationResponse {
-    code: String
-    message: String
-    item: Event
+  code: String
+  message: String
+  item: Event
 }
 
 type Mutation {
-    createEvent(name: String): EventMutationResponse
-        @dynamo(table: "events", action: "create")
+  createEvent(name: String): EventMutationResponse
+    @dynamo(table: "events", action: "create")
 }
 ```
 
 ### Update Item Mutations
 
-```
+```gql
 type Event {
-    id: String
-    name: String
+  id: String
+  name: String
 }
 
 type EventMutationResponse {
-    code: String
-    message: String
-    item: Event
+  code: String
+  message: String
+  item: Event
 }
 
 type Mutation {
-    updateEvent(id: String!, name: String): EventMutationResponse
-        @dynamo(table: "events", action: "update")
+  updateEvent(id: String!, name: String): EventMutationResponse
+    @dynamo(table: "events", action: "update")
 }
 ```
 
 ### Destroy Item Mutation
 
-```
+```gql
 type Event {
-    id: String
-    name: String
+  id: String
+  name: String
 }
 
 type EventMutationResponse {
-    code: String
-    message: String
-    item: Event
+  code: String
+  message: String
+  item: Event
 }
 
 type Mutation {
-    destroyEvent(id: String!): EventMutationResponse
-        @dynamo(table: "events", action: "destroy")
+  destroyEvent(id: String!): EventMutationResponse
+    @dynamo(table: "events", action: "destroy")
 }
 ```
 
