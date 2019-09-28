@@ -53,6 +53,14 @@ server.listen().then(({url}) => {
 
 For a full list of what can be passed in to the `createDynamoSchema` function, check out the [AWS docs](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB.html)
 
+## Running the examples
+
+To run the examples, you need to install dynamo local. The instructions for that can be found in the [AWS docs](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html).
+
+After it is set up, you just need to run `java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb` to run the database and:
+
+`yarn example:migrations; yarn example`
+
 ## Example Usage
 
 ### Scan an entire table
