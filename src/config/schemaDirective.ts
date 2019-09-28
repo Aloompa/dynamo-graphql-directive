@@ -4,5 +4,7 @@ export const schemaDirective = `
     index: String
     action: String
     foreignKey: String
+    joinTable: String
+    primaryKey: String
   ) on OBJECT | FIELD_DEFINITION
 `;

@@ -7,6 +7,28 @@ const createEventTable = dynamo => {
         AttributeName: 'id',
         AttributeType: 'S',
       },
+      {
+        AttributeName: 'placeId',
+        AttributeType: 'S',
+      },
+    ],
+    GlobalSecondaryIndexes: [
+      {
+        IndexName: 'placeId-index',
+        KeySchema: [
+          {
+            AttributeName: 'placeId',
+            KeyType: 'HASH',
+          },
+        ],
+        Projection: {
+          ProjectionType: 'ALL',
+        },
+        ProvisionedThroughput: {
+          ReadCapacityUnits: 1,
+          WriteCapacityUnits: 1,
+        },
+      },
     ],
     KeySchema: [
       {

@@ -12,21 +12,43 @@ export const typeDefs = gql`
   type Place {
     id: String
     name: String
+    listEvents: EventsCollection
+      @dynamo(
+        table: "events"
+        index: "placeId-index"
+        primaryKey: "placeId"
+        action: "query"
+      )
   }
 
   type Event {
     id: String
     name: String
     placeId: String
-    listPerformers: [Performer]
-      @dynamo(table: "performers", index: "eventId-index")
+    listPerformers: PerformersCollection
+      @dynamo(
+        table: "performers"
+        joinTable: "events-performers"
+        index: "eventId-index"
+        primaryKey: "eventId"
+        foreignKey: "performerId"
+        action: "query"
+      )
     place: Place @dynamo(table: "places", action: "get", foreignKey: "placeId")
   }
 
   type Performer {
     id: String
     name: String
-    listEvents: [Event] @dynamo(table: "events", index: "performerId-index")
+    listEvents: EventsCollection
+      @dynamo(
+        table: "events"
+        joinTable: "events-performers"
+        index: "performerId-index"
+        primaryKey: "performerId"
+        foreignKey: "eventId"
+        action: "query"
+      )
   }
 
   type EventsCollection {

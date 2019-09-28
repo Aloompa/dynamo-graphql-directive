@@ -4,7 +4,7 @@ const populatePerformer = dynamo => {
   const params = {
     Item: {
       id: {
-        S: '1',
+        S: 'e8001849-86a3-4453-81a8-fe59dadfc5d7',
       },
       name: {
         S: 'Arcade Fire',

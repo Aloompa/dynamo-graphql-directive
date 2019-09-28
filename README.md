@@ -108,8 +108,8 @@ type EventsCollection {
 }
 
 type Query {
-  listEventsByApp(query: String!): EventsCollection
-    @dynamo(table: "events", action: "query", index: "appId-index")
+  listEventsByName(query: String!): EventsCollection
+    @dynamo(table: "events", action: "query", index: "name-index")
 }
 ```
 
@@ -133,13 +133,73 @@ type Query {
 }
 ```
 
-### One to many relationships
+### One to many relationships with a join table
 
-Coming Soon
+```gql
+type Event {
+  id: String
+  placeId: String
+}
 
-### Many to many relationships
+type Place {
+  id: String
+  listEvents: EventsCollection
+    @dynamo(
+      table: "events"
+      index: "placeId-index"
+      primaryKey: "placeId"
+      action: "query"
+    )
+}
 
-Coming Soon
+type Query {
+  listEvents: EventsCollection @dynamo(table: "events")
+  listPlaces: PlacesCollection @dynamo(table: "places")
+}
+```
+
+### Many to many relationships with a join table
+
+```gql
+type EventsCollection {
+  items: [Event]
+}
+
+type PerformersCollection {
+  items: [Performer]
+}
+
+type Performer {
+  id: String
+  listEvents: EventsCollection
+    @dynamo(
+      table: "events"
+      joinTable: "events-performers"
+      index: "performerId-index"
+      primaryKey: "performerId"
+      foreignKey: "eventId"
+      action: "query"
+    )
+}
+
+type Event {
+  id: String
+  listPerformers: PerformersCollection
+    @dynamo(
+      table: "performers"
+      joinTable: "events-performers"
+      index: "eventId-index"
+      primaryKey: "eventId"
+      foreignKey: "performerId"
+      action: "query"
+    )
+}
+
+type Query {
+  listEvents: EventsCollection @dynamo(table: "events")
+  listPerformers: PerformersCollection @dynamo(table: "performers")
+}
+```
 
 ### Create Item Mutations
 
