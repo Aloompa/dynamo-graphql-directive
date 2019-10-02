@@ -1,18 +1,18 @@
-import {normalizeResponseArray} from '../util/normalizeResponse';
+import { normalizeResponseArray, getTableName } from '../util';
 
-export const scan = ({dynamodb, args}) => {
+export const scan = ({ dynamodb, args, options }) => {
   return new Promise((resolve, reject) => {
-    const options = {
-      TableName: args.table,
+    const params = {
+      TableName: getTableName(args, options)
     };
-    return dynamodb.scan(options, (err, res) => {
+    return dynamodb.scan(params, (err, res) => {
       if (err) {
         return reject(err);
       }
 
       // Scan the entire table
       return resolve({
-        items: normalizeResponseArray(res),
+        items: normalizeResponseArray(res)
       });
     });
   });

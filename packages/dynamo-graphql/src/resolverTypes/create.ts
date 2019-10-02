@@ -1,22 +1,22 @@
 import * as uuid from 'uuid/v4';
 
-import {buildPutItems} from '../util/buildPutItems';
-import {get} from './get';
+import { buildPutItems, getTableName } from '../util';
+import { get } from './get';
 
-export const create = ({dynamodb, args, data}) => {
+export const create = ({ dynamodb, args, data, options }) => {
   return new Promise((resolve, reject) => {
     const id = uuid();
-    const options = {
-      TableName: args.table,
+    const params = {
+      TableName: getTableName(args, options),
       Item: {
         [args.key || 'id']: {
-          S: id,
+          S: id
         },
-        ...buildPutItems(data),
-      },
+        ...buildPutItems(data)
+      }
     };
 
-    return dynamodb.putItem(options, err => {
+    return dynamodb.putItem(params, (err) => {
       if (err) {
         return reject(err);
       }
@@ -25,13 +25,13 @@ export const create = ({dynamodb, args, data}) => {
         dynamodb,
         args,
         data: {
-          id,
-        },
-      }).then(item =>
+          id
+        }
+      }).then((item) =>
         resolve({
           item,
           code: 'OK',
-          message: null,
+          message: null
         })
       );
     });

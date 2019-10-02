@@ -1,65 +1,64 @@
-import {dynamoPromise} from '../util/dynamoPromise';
-import {get} from './get';
-import {normalizeResponseArray} from '../util/normalizeResponse';
+import { dynamoPromise, getTableName, normalizeResponseArray } from '../util';
+import { get } from './get';
 
-const queryJoinTable = ({dynamodb, args, input}) => {
-  const options = {
-    TableName: args.joinTable,
+const queryJoinTable = ({ dynamodb, args, input, options }) => {
+  const params = {
+    TableName: getTableName({ table: args.joinTable }, options),
     IndexName: args.index,
     ExpressionAttributeValues: {
       ':v1': {
-        S: input[args.key || 'id'],
-      },
+        S: input[args.key || 'id']
+      }
     },
-    KeyConditionExpression: `${args.primaryKey} = :v1`,
+    KeyConditionExpression: `${args.primaryKey} = :v1`
   };
 
-  return dynamoPromise(dynamodb, 'query', options)
+  return dynamoPromise(dynamodb, 'query', params)
     .then(normalizeResponseArray)
     .then((items: any) =>
       Promise.all(
-        items.map(item =>
+        items.map((item) =>
           get({
             dynamodb,
             args: {
-              table: args.table,
+              table: args.table
             },
             data: {
-              id: item[args.foreignKey],
-            },
+              id: item[args.foreignKey]
+            }
           })
         )
-      ).then(items => ({
-        items,
+      ).then((items) => ({
+        items
       }))
     );
 };
 
-const queryTable = ({dynamodb, args, input}) => {
-  const options = {
-    TableName: args.table,
+const queryTable = ({ dynamodb, args, input, options }) => {
+  const params = {
+    TableName: getTableName(args, options),
     IndexName: args.index,
     ExpressionAttributeValues: {
       ':v1': {
-        S: input[args.key || 'id'],
-      },
+        S: input[args.key || 'id']
+      }
     },
-    KeyConditionExpression: `${args.primaryKey} = :v1`,
+    KeyConditionExpression: `${args.primaryKey} = :v1`
   };
 
-  return dynamoPromise(dynamodb, 'query', options)
+  return dynamoPromise(dynamodb, 'query', params)
     .then(normalizeResponseArray)
-    .then(items => ({
-      items,
+    .then((items) => ({
+      items
     }));
 };
 
-export const query = ({dynamodb, args, input}) => {
+export const query = ({ dynamodb, args, input, options }) => {
   // Many to many relationships with a join table
   if (args.joinTable) {
-    return queryJoinTable({dynamodb, args, input});
+    return queryJoinTable({ dynamodb, args, input, options });
   }
 
   // One to many relationships with an index
-  return queryTable({dynamodb, args, input});
+  return queryTable({ dynamodb, args, input, options });
 };

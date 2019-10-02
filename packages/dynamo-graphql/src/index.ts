@@ -7,8 +7,15 @@ export * from './util/dynamoPromise';
 
 export * from './config/createConnection';
 
-export const createDynamoSchema = (options) => {
-  const connection = createConnection(options);
+interface DynamoSchemaOptions {
+  tablePrefix?: string;
+}
+
+export const createDynamoSchema = (
+  awsConfig,
+  options: DynamoSchemaOptions = {}
+) => {
+  const connection = createConnection(awsConfig);
 
   return class DynamoDirective extends SchemaDirectiveVisitor {
     public visitFieldDefinition(field) {
@@ -17,6 +24,7 @@ export const createDynamoSchema = (options) => {
           resolverTypes[this.args.action] || resolverTypes.scan;
 
         return resolverType({
+          options,
           input,
           ctx,
           dynamodb: connection,
@@ -28,7 +36,6 @@ export const createDynamoSchema = (options) => {
     }
 
     public visitObject(field) {
-      console.log('::ARGS2', this.args);
       field.resolve = () => [];
     }
   };
