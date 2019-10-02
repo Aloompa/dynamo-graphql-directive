@@ -10,9 +10,9 @@
   "author": "Aloompa",
   "license": "GNU ",
   "dependencies": {
-    "apollo-server": "^2.9.4",
     "aws-sdk": "^2.535.0",
     "graphql": "^14.5.7",
+    "graphql-tools": "^4.0.5",
     "uuid": "^3.3.3"
   },
   "devDependencies": {

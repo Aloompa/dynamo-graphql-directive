@@ -1,4 +1,4 @@
-import { SchemaDirectiveVisitor } from 'apollo-server';
+import { SchemaDirectiveVisitor } from 'graphql-tools';
 import { createConnection } from './config/createConnection';
 import { resolverTypes } from './resolverTypes';
 
