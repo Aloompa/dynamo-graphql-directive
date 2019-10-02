@@ -2,9 +2,8 @@
   "name": "@aloompa/dynamo-graphql-example",
   "version": "1.0.0",
   "main": "index.js",
-  "author": "Tyson Cadenhead",
-  "license": "MIT",
-  "private": false,
+  "author": "Aloompa",
+  "license": "GNU",
   "scripts": {
     "start": "./node_modules/.bin/ts-node ./src",
     "example:migrations": "./node_modules/.bin/ts-node ./src/migrations"
