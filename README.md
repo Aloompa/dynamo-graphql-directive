@@ -31,9 +31,9 @@ With Yarn:
 ## Getting Started
 
 ```js
-import {ApolloServer} from 'apollo-server';
-import {createDynamoSchema} from '@aloompa/dynamo-graphql-directive';
-import {typeDefs} from './schema';
+import { ApolloServer } from 'apollo-server';
+import { createDynamoSchema } from '@aloompa/dynamo-graphql-directive';
+import { typeDefs } from './schema';
 
 const server = new ApolloServer({
   typeDefs,
@@ -41,17 +41,27 @@ const server = new ApolloServer({
   schemaDirectives: {
     dynamo: createDynamoSchema({
       // Your custom AWS Dynamo config goes here
-      endpoint: 'http://localhost:8000',
-    }),
-  },
+      endpoint: 'http://localhost:8000'
+    })
+  }
 });
 
-server.listen().then(({url}) => {
+server.listen().then(({ url }) => {
   console.log(`🚀  Server ready at ${url}`);
 });
 ```
 
 For a full list of what can be passed in to the `createDynamoSchema` function, check out the [AWS docs](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB.html)
+
+Additionally, there are options, you may pass in as a second argument to `createDynamoSchema`:
+
+### getTableName: Function(String) => String
+
+If you prefix or postfix all of your table names with the development environment, this can be handy to override the table names. Everytime we get the name of a table, we pass it into this function so that you can return a new formatted name.
+
+```js
+createDynamoSchema({ ... }, { getTableName: name => `${name}-dev` })
+```
 
 ## Running the examples
 
