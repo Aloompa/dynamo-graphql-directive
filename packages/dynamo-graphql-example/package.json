@@ -1,0 +1,20 @@
+{
+  "name": "@aloompa/dynamo-graphql-example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Tyson Cadenhead",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "./node_modules/.bin/ts-node ./src",
+    "example:migrations": "./node_modules/.bin/ts-node ./src/migrations"
+  },
+  "dependencies": {
+    "apollo-server": "^2.9.4",
+    "@aloompa/dynamo-graphql": "../dynamo-graphql"
+  },
+  "devDependencies": {
+    "ts-node": "^8.4.1",
+    "typescript": "^3.6.3"
+  }
+}

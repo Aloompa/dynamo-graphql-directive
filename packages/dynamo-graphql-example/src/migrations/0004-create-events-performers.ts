@@ -1,20 +1,20 @@
-import {dynamoPromise} from '../../../util/dynamoPromise';
+import { dynamoPromise } from '@aloompa/dynamo-graphql';
 
-const createEventPerformerTable = dynamo => {
+const createEventPerformerTable = (dynamo) => {
   const params = {
     AttributeDefinitions: [
       {
         AttributeName: 'id',
-        AttributeType: 'S',
+        AttributeType: 'S'
       },
       {
         AttributeName: 'performerId',
-        AttributeType: 'S',
+        AttributeType: 'S'
       },
       {
         AttributeName: 'eventId',
-        AttributeType: 'S',
-      },
+        AttributeType: 'S'
+      }
     ],
     GlobalSecondaryIndexes: [
       {
@@ -22,51 +22,51 @@ const createEventPerformerTable = dynamo => {
         KeySchema: [
           {
             AttributeName: 'performerId',
-            KeyType: 'HASH',
-          },
+            KeyType: 'HASH'
+          }
         ],
         Projection: {
-          ProjectionType: 'ALL',
+          ProjectionType: 'ALL'
         },
         ProvisionedThroughput: {
           ReadCapacityUnits: 1,
-          WriteCapacityUnits: 1,
-        },
+          WriteCapacityUnits: 1
+        }
       },
       {
         IndexName: 'eventId-index',
         KeySchema: [
           {
             AttributeName: 'eventId',
-            KeyType: 'HASH',
-          },
+            KeyType: 'HASH'
+          }
         ],
         Projection: {
-          ProjectionType: 'ALL',
+          ProjectionType: 'ALL'
         },
         ProvisionedThroughput: {
           ReadCapacityUnits: 1,
-          WriteCapacityUnits: 1,
-        },
-      },
+          WriteCapacityUnits: 1
+        }
+      }
     ],
     KeySchema: [
       {
         AttributeName: 'id',
-        KeyType: 'HASH',
-      },
+        KeyType: 'HASH'
+      }
     ],
     ProvisionedThroughput: {
       ReadCapacityUnits: 1,
-      WriteCapacityUnits: 1,
+      WriteCapacityUnits: 1
     },
-    TableName: 'events-performers',
+    TableName: 'events-performers'
   };
   return dynamoPromise(dynamo, 'listTables', {})
     .then((res: any) => {
       if (res.TableNames.includes('events-performers')) {
         return dynamoPromise(dynamo, 'deleteTable', {
-          TableName: 'events-performers',
+          TableName: 'events-performers'
         });
       }
 

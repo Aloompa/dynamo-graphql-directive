@@ -1,16 +1,16 @@
-import {dynamoPromise} from '../../../util/dynamoPromise';
+import { dynamoPromise } from '@aloompa/dynamo-graphql';
 
-const createEventTable = dynamo => {
+const createEventTable = (dynamo) => {
   const params = {
     AttributeDefinitions: [
       {
         AttributeName: 'id',
-        AttributeType: 'S',
+        AttributeType: 'S'
       },
       {
         AttributeName: 'placeId',
-        AttributeType: 'S',
-      },
+        AttributeType: 'S'
+      }
     ],
     GlobalSecondaryIndexes: [
       {
@@ -18,35 +18,35 @@ const createEventTable = dynamo => {
         KeySchema: [
           {
             AttributeName: 'placeId',
-            KeyType: 'HASH',
-          },
+            KeyType: 'HASH'
+          }
         ],
         Projection: {
-          ProjectionType: 'ALL',
+          ProjectionType: 'ALL'
         },
         ProvisionedThroughput: {
           ReadCapacityUnits: 1,
-          WriteCapacityUnits: 1,
-        },
-      },
+          WriteCapacityUnits: 1
+        }
+      }
     ],
     KeySchema: [
       {
         AttributeName: 'id',
-        KeyType: 'HASH',
-      },
+        KeyType: 'HASH'
+      }
     ],
     ProvisionedThroughput: {
       ReadCapacityUnits: 1,
-      WriteCapacityUnits: 1,
+      WriteCapacityUnits: 1
     },
-    TableName: 'events',
+    TableName: 'events'
   };
   return dynamoPromise(dynamo, 'listTables', {})
     .then((res: any) => {
       if (res.TableNames.includes('events')) {
         return dynamoPromise(dynamo, 'deleteTable', {
-          TableName: 'events',
+          TableName: 'events'
         });
       }
 

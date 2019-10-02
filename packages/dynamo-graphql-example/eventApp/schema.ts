@@ -1,5 +1,5 @@
-import {gql} from 'apollo-server';
-import {schemaDirective} from '../../index';
+import { gql } from 'apollo-server';
+import { schemaDirective } from '../../dynamo-graphql/src/index';
 
 export const typeDefs = gql`
   ${schemaDirective}

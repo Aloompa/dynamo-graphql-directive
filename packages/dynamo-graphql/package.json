@@ -1,0 +1,22 @@
+{
+  "name": "@aloompa/dynamo-graphql",
+  "version": "1.0.0",
+  "description": "Dynamo Directive for GraphQL",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "./node_modules/.bin/tsc"
+  },
+  "author": "Aloompa",
+  "license": "MIT",
+  "dependencies": {
+    "apollo-server": "^2.9.4",
+    "aws-sdk": "^2.535.0",
+    "graphql": "^14.5.7",
+    "uuid": "^3.3.3"
+  },
+  "devDependencies": {
+    "ts-node": "^8.4.1",
+    "typescript": "^3.6.3"
+  }
+}

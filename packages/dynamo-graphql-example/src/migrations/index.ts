@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 
-import {createConnection} from '../../../config/createConnection';
+import { createConnection } from '@aloompa/dynamo-graphql';
 
 const migrationsList = fs.readdirSync(__dirname);
 
@@ -19,7 +19,7 @@ const runMigrationsSync = (migrationsList, dynamo) => {
         return runMigrationsSync(remainingMigrations, dynamo);
       }
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(`There was an error while running ${currentMigration}!!!`);
       console.log(err);
     });
@@ -27,11 +27,11 @@ const runMigrationsSync = (migrationsList, dynamo) => {
 
 const migrations = () => {
   const dynamo = createConnection({
-    endpoint: 'http://localhost:8000',
+    endpoint: 'http://localhost:8000'
   });
 
   return runMigrationsSync(
-    migrationsList.filter(migration => migration !== 'index.ts'),
+    migrationsList.filter((migration) => migration !== 'index.ts'),
     dynamo
   );
 };

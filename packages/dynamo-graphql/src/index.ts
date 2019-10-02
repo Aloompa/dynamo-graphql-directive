@@ -1,10 +1,13 @@
-import {SchemaDirectiveVisitor} from 'apollo-server';
-import {createConnection} from './config/createConnection';
-import {resolverTypes} from './resolverTypes';
+import { SchemaDirectiveVisitor } from 'apollo-server';
+import { createConnection } from './config/createConnection';
+import { resolverTypes } from './resolverTypes';
 
 export * from './config/schemaDirective';
+export * from './util/dynamoPromise';
 
-export const createDynamoSchema = options => {
+export * from './config/createConnection';
+
+export const createDynamoSchema = (options) => {
   const connection = createConnection(options);
 
   return class DynamoDirective extends SchemaDirectiveVisitor {
@@ -19,7 +22,7 @@ export const createDynamoSchema = options => {
           dynamodb: connection,
           args: this.args,
           data: data || {},
-          definition,
+          definition
         });
       };
     }
