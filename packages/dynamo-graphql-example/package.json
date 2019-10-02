@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "author": "Aloompa",
-  "license": "GNU",
+  "license": "ISC",
   "scripts": {
     "start": "./node_modules/.bin/ts-node ./src",
     "example:migrations": "./node_modules/.bin/ts-node ./src/migrations"

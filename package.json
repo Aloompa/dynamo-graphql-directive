@@ -4,7 +4,7 @@
   "main": "index.js",
   "repository": "git@github.com:Aloompa/dynamo-graphql-directive.git",
   "author": "Aloompa",
-  "license": "GNU",
+  "license": "ISC",
   "devDependencies": {
     "lerna": "^3.16.4"
   }
