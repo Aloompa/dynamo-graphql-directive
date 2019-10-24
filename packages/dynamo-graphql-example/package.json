@@ -6,7 +6,7 @@
   "license": "ISC",
   "scripts": {
     "start": "./node_modules/.bin/ts-node ./src",
-    "example:migrations": "./node_modules/.bin/ts-node ./src/migrations"
+    "migrations": "./node_modules/.bin/ts-node ./src/migrations"
   },
   "dependencies": {
     "apollo-server": "^2.9.4",

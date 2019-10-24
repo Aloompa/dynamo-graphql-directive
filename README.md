@@ -67,9 +67,9 @@ createDynamoSchema({ ... }, { getTableName: name => `${name}-dev` })
 
 To run the examples, you need to install dynamo local. The instructions for that can be found in the [AWS docs](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html).
 
-After it is set up, you just need to run `java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb` to run the database and:
+After it is set up, you just need to run `java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb` to run the database and then navigate to the `./packages/dynamo-graphql-example` directory and run:
 
-`yarn example:migrations; yarn example`
+`yarn migrations; yarn start`
 
 ## Example Usage
 
