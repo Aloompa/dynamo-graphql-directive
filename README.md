@@ -143,6 +143,10 @@ type Query {
 }
 ```
 
+### One to many relationships with an array of ids
+
+Coming soon
+
 ### One to many relationships with a join table
 
 ```gql
