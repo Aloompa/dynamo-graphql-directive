@@ -225,8 +225,12 @@ type EventMutationResponse {
   item: Event
 }
 
+input EventInput {
+  name: String
+}
+
 type Mutation {
-  createEvent(name: String): EventMutationResponse
+  createEvent(input: EventInput): EventMutationResponse
     @dynamo(table: "events", action: "create")
 }
 ```
@@ -245,8 +249,12 @@ type EventMutationResponse {
   item: Event
 }
 
+input EventInput {
+  name: String
+}
+
 type Mutation {
-  updateEvent(id: String!, name: String): EventMutationResponse
+  updateEvent(id: String!, input: EventInput): EventMutationResponse
     @dynamo(table: "events", action: "update")
 }
 ```

@@ -24,7 +24,7 @@ export const update = ({ dynamodb, args, data, options }) => {
         TableName: getTableName(args, options),
         Item: buildPutItems({
           ...existingItem,
-          ...data
+          ...data.input
         })
       };
 
@@ -40,7 +40,7 @@ export const update = ({ dynamodb, args, data, options }) => {
         return resolve({
           item: {
             ...existingItem,
-            ...data
+            ...data.input
           },
           code: 'OK',
           message: null

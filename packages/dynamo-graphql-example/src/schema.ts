@@ -114,23 +114,27 @@ export const typeDefs = gql`
     addresses: [AddressInput]
   }
 
+  input EventInput {
+    name: String
+    placeId: String
+  }
+
+  input PlaceInput {
+    name: String
+    location: LocationInput
+  }
+
   type Mutation {
-    createEvent(name: String, placeId: String): EventMutationResponse
+    createEvent(input: EventInput): EventMutationResponse
       @dynamo(table: "events", action: "create")
-    updateEvent(
-      id: String!
-      name: String
-      placeId: String
-    ): EventMutationResponse @dynamo(table: "events", action: "update")
+    updateEvent(id: String!, input: EventInput): EventMutationResponse
+      @dynamo(table: "events", action: "update")
     destroyEvent(id: String!): EventMutationResponse
       @dynamo(table: "events", action: "destroy")
-    createPlace(name: String, location: LocationInput): PlaceMutationResponse
+    createPlace(input: PlaceInput): PlaceMutationResponse
       @dynamo(table: "places", action: "create")
-    updatePlace(
-      id: String!
-      name: String
-      location: LocationInput
-    ): PlaceMutationResponse @dynamo(table: "places", action: "update")
+    updatePlace(id: String!, input: PlaceInput): PlaceMutationResponse
+      @dynamo(table: "places", action: "update")
     destroyPlace(id: String!): PlaceMutationResponse
       @dynamo(table: "places", action: "destroy")
   }

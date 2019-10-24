@@ -12,7 +12,7 @@ export const create = ({ dynamodb, args, data, options }) => {
         [args.key || 'id']: {
           S: id
         },
-        ...buildPutItems(data)
+        ...buildPutItems(data.input)
       }
     };
 

@@ -7,8 +7,9 @@ export const normalizeResponseItem = (item) => {
     return {
       ...prev,
       [key]: item[key].L
-        ? item[key].L.map(res =>
+        ? item[key].L.map((res) =>
             res.M ? normalizeResponseItem(res.M) : res[Object.keys(res)[0]]
+          )
         : item[key].M
         ? normalizeResponseItem(item[key].M)
         : item[key][Object.keys(item[key])[0]]

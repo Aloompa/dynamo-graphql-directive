@@ -8,7 +8,7 @@ export * from './util/dynamoPromise';
 export * from './config/createConnection';
 
 interface DynamoSchemaOptions {
-  tablePrefix?: string;
+  getTableName?: Function;
 }
 
 export const createDynamoSchema = (
