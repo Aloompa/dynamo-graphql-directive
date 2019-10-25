@@ -27,13 +27,22 @@
     "apollo-server": "^2.9.7"
   },
   "jest": {
-    "moduleFileExtensions": ["ts", "tsx", "js"],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
     "transform": {
       "\\.(ts|tsx)$": "./node_modules/ts-jest"
     },
     "testRegex": "/__tests__/.*\\.(ts|tsx)$",
     "collectCoverage": true,
-    "collectCoverageFrom": ["src/**/*.{ts,tsx}"],
-    "coverageReporters": ["html", "json"]
+    "collectCoverageFrom": [
+      "src/**/*.{ts,tsx}"
+    ],
+    "coverageReporters": [
+      "html",
+      "json"
+    ]
   }
 }

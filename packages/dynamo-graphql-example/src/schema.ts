@@ -92,6 +92,13 @@ export const typeDefs = gql`
 
   type Query {
     listEvents: EventsCollection @dynamo(table: "events")
+    searchEventsByName(query: String!): EventsCollection
+      @dynamo(
+        table: "events"
+        action: "query"
+        index: "name-index"
+        primaryKey: "name"
+      )
     listPerformers: PerformersCollection @dynamo(table: "performers")
     listPlaces: PlacesCollection @dynamo(table: "places")
     getPerformer(id: String!): Performer

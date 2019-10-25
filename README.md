@@ -105,8 +105,6 @@ type Query {
 
 ### Query a table
 
-**Coming Soon**, but I think it will look like:
-
 ```gql
 type Event {
   id: String
@@ -118,10 +116,30 @@ type EventsCollection {
 }
 
 type Query {
-  listEventsByName(query: String!): EventsCollection
-    @dynamo(table: "events", action: "query", index: "name-index")
+  searchEventsByName(query: String!): EventsCollection
+    @dynamo(
+      table: "events"
+      action: "query"
+      index: "name-index"
+      primaryKey: "name"
+      comparator: "EQ"
+    )
 }
 ```
+
+Queries may also include a valid `comparator` to declare how the items are being filtered. These include:
+
+> - BETWEEN
+> - BEGINS_WITH
+> - EQ
+> - LT
+> - LTE
+> - GT
+> - GTE
+
+If the comparator is `BEGINS_WITH`, `EQ`, `LT`, `GT`, `LTE`, `GT` or `GTE`, a `query` is expected to be provided as an argument.
+
+If the comparator is `BETWEEN`, a `min` and `max` argument is expected.
 
 ### One to one relationships
 

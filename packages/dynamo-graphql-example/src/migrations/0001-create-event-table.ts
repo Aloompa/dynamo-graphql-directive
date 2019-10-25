@@ -10,6 +10,10 @@ const createEventTable = (dynamo) => {
       {
         AttributeName: 'placeId',
         AttributeType: 'S'
+      },
+      {
+        AttributeName: 'name',
+        AttributeType: 'S'
       }
     ],
     GlobalSecondaryIndexes: [
@@ -18,6 +22,22 @@ const createEventTable = (dynamo) => {
         KeySchema: [
           {
             AttributeName: 'placeId',
+            KeyType: 'HASH'
+          }
+        ],
+        Projection: {
+          ProjectionType: 'ALL'
+        },
+        ProvisionedThroughput: {
+          ReadCapacityUnits: 1,
+          WriteCapacityUnits: 1
+        }
+      },
+      {
+        IndexName: 'name-index',
+        KeySchema: [
+          {
+            AttributeName: 'name',
             KeyType: 'HASH'
           }
         ],

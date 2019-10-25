@@ -80,7 +80,7 @@ describe('Scan', () => {
       }
     });
 
-    await server.listen(4001);
+    await server.listen(4002);
 
     const { mutate, query } = createTestClient(server);
 

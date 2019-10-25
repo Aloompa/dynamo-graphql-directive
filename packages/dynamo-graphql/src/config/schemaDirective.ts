@@ -6,5 +6,6 @@ export const schemaDirective = `
     foreignKey: String
     joinTable: String
     primaryKey: String
+    comparator: String
   ) on OBJECT | FIELD_DEFINITION
 `;
