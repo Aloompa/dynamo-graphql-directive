@@ -9,7 +9,7 @@
     "migrations": "./node_modules/.bin/ts-node ./src/migrations"
   },
   "dependencies": {
-    "apollo-server": "^2.9.4",
+    "apollo-server": "^2.25.3",
     "@aloompa/dynamo-graphql": "../dynamo-graphql"
   },
   "devDependencies": {
